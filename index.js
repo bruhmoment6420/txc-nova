@@ -51,7 +51,7 @@ client.on('ready', () => {
         value: '*Shows the ping.*'
       },
       {
-        name: 'member;',
+        name: 'member:',
         value: '*Shows current members in server.*'
       } 
     )
