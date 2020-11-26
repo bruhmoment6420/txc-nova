@@ -1,6 +1,6 @@
 module.exports = (client) => {
   const channelIds = [
-    '781412612810080256', // Voting
+    '781520667362983957', // Voting
   ]
 
   const addReactions = (message) => {
