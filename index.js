@@ -20,7 +20,7 @@ client.on('ready', () => {
       .addFields(
       {
         name: 'Bot Prefix',
-        value: '*>*',
+        value: '*,*',
       },
       {
         name: 'ban:',
@@ -66,7 +66,7 @@ client.on('ready', () => {
   // Meme Command
   client.on('message', message => {
 
-    if (message.content === ">meme") {
+    if (message.content === ",meme") {
       const embed = new Discord.MessageEmbed()
       got('https://www.reddit.com/r/memes/random/.json').then(response => {
         let content = JSON.parse(response.body);
@@ -89,7 +89,7 @@ client.on('ready', () => {
 
   // Latency
   client.on('message', message => {
-    if (message.content === '>ping') {  
+    if (message.content === ',ping') {  
       message.channel.send(`🏓Latency is **${message.createdTimestamp - message.createdTimestamp}ms** API Latency is **${Math.round(client.ws.ping)}ms**`);
     }
   });
