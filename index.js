@@ -16,6 +16,7 @@ client.on('ready', () => {
       .setTitle(`***Help Menu***`)
       .setThumbnail(client.user.displayAvatarURL())
       .setColor('#2400FF')
+      .setFooter('Developed by Tahlil') 	
       .addFields(
       {
         name: 'Bot Prefix',
