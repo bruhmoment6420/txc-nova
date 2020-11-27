@@ -208,10 +208,10 @@ client.on('ready', () => {
       'upskirts',
       'vagina',
       'vaginal',
-      'Vaginal cancer',
+      'vaginal cancer',
       'vbucks',
-      'Viagra',
-      'Vibrator',
+      'viagra',
+      'vibrator',
       'vibrators',
       'white power',
       'white pride',
@@ -242,40 +242,64 @@ client.on('ready', () => {
           value: '*,*',
         },
         {
-          name: 'ban:',
-          value: '*Bans a user duh. <Requires ADMIN>.*',
-        },
-        {
-          name: 'kick:',
-          value: '*Kicks a user also duh. <Requires ADMIN>.*',
-        },
-        {
-          name: 'clear:',
-          value: '*Clears messages also duh. <Requires ADMIN>.*',
-        },
-        {
-          name: 'nuke:',
-          value: '*Hiroshimas the channel. <Requires ADMIN>.*',
-        },
-        {
           name: 'meme:',
           value: '*Sends memes.*',
         },
         {
-          name: 'status:',
-          value: '*Sets bot playing status.*',
-        },
-        {
           name: 'ping:',
-          value: '*Shows the ping.*'
+          value: '*Shows the ping.*',
         },
         {
           name: 'member:',
-          value: '*Shows current members in server.*'
+          value: '*Shows current members in server.*',
+        },
+        {
+          name: 'helpa:',
+          value: '*Shows list of admin commands.*',
         }
       )
 
     message.channel.send(embed)
+
+  })
+
+
+  // Admin Help
+  command(client, ['adminh', 'helpa', 'adminhelp'], message => {
+
+    if (message.member.hasPermission('ADMINISTRATOR')) {
+      const newEmbed = new Discord.MessageEmbed()
+        .setTitle(`***SUPER SECRET HELP MENU***`)
+        .setThumbnail(client.user.displayAvatarURL())
+        .setColor('#39940D')
+        .setFooter('Developed by Tahluwu')
+        .addFields(
+          {
+            name: 'ban',
+            value: '*Bans user, Tag person you wanna ban to init*',
+          },
+          {
+            name: 'kick',
+            value: '*Kicks user, Tag person you wanna ban to init*',
+          },
+          {
+            name: 'clear',
+            value: '*Clears message, use with args uwu*',
+          },
+          {
+            name: 'nuke',
+            value: '*Hiroshimas the channel*',
+          },
+          {
+            name: 'status',
+            value: '*Sets the status uwu*',
+          }
+        )
+
+      message.channel.send(newEmbed)
+    } else {
+      message.channel.send(`***no***`)
+    }
 
   })
 
