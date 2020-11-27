@@ -218,14 +218,17 @@ client.on('ready', () => {
       'Xbox nigga',
       'xnxx',
       'Xtube',
-      'xvideos',]
+      'xvideos',
+    ]
+
+    if (swearWords.some(word => message.content.toLowerCase().includes(word))) {
+      message.delete()
+
+      message.member.send(`***YOU HAVE SOME NERVE SAYING THAT IN THIS SERVER***`)
+    }
   })
 
-  if (swearWords.some(word => message.content.toLowerCase().includes(word))) {
-    message.delete()
 
-    message.member.send(`***YOU HAVE SOME NERVE SAYING THAT IN THIS SERVER***`)
-  }
 
   // Help Command
   command(client, ['help', 'h'], message => {
