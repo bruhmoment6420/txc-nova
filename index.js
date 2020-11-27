@@ -1,6 +1,6 @@
-const Discord  = require('discord.js')
+const Discord = require('discord.js')
 const got = require('got')
-const client = new Discord.Client() 
+const client = new Discord.Client()
 
 const config = require('./config.json')
 const command = require('./command')
@@ -10,51 +10,268 @@ const poll = require('./poll')
 client.on('ready', () => {
   console.log('The client is ready!')
 
+  // Profanity Blocker
+  client.on('message', async message => {
+    const { member } = message
+
+
+    const swearWords = [
+      'lettuce',
+      'another lettuce',
+      'nigger',
+      'beater',
+      'blowjob',
+      'handjob',
+      'suicide',
+      'brazzers',
+      'breast cancer',
+      'brunette',
+      'busty',
+      'buttfuck',
+      'clit',
+      'clitoris',
+      'cocksucker',
+      'condom',
+      'condoms',
+      'crackwhore',
+      'cum',
+      'cumming',
+      'cumshot',
+      'cumshots',
+      'cyst',
+      'deepthroat',
+      'dental abscenes',
+      'doggiestyle',
+      'doggie style',
+      'doggy style',
+      'dildo',
+      'ejaculate',
+      'ejaculated',
+      'ejaculates',
+      'ejaculation',
+      'ejaculating',
+      'el chapo',
+      'erectile dysfunction',
+      'erection',
+      'erotic',
+      'faggot',
+      'faggots',
+      'faggs',
+      'faghag',
+      'fap',
+      'fapping',
+      'fetish',
+      'fetishes',
+      'fingered',
+      'fingering',
+      'fisted',
+      'footjob',
+      'foreskin',
+      'fuckme',
+      'fuck me',
+      'lets fuck',
+      'fucktard',
+      'G - Spot',
+      'g spot',
+      'G Spot',
+      'gambling',
+      'gang bang',
+      'gangbang',
+      'gangbanged',
+      'genital',
+      'genital herpes',
+      'grope',
+      'groping',
+      'groped',
+      'hand job',
+      'Handjob',
+      'handjobs',
+      'Hentai',
+      'heroin',
+      'hetero',
+      'Hitler',
+      'holocaust',
+      'holohoax',
+      'homo',
+      'homoerotic',
+      'hooker',
+      'hookers',
+      'horney',
+      'horniest',
+      'horny',
+      'hotbox',
+      'hotsex',
+      'hottest',
+      'hump',
+      'humped',
+      'humping',
+      'Hydroxychloroquine',
+      'Incest',
+      'intercourse',
+      'ISIL',
+      'ISIS',
+      'jacking off',
+      'jackoff',
+      'jerk - off',
+      'jerkoff',
+      'LiveLeak',
+      'lust',
+      'lustful',
+      'marijuana',
+      'massacre',
+      'masterbate',
+      'masterbating',
+      'masterbation',
+      'masturbate',
+      'masturbating',
+      'Masturbation',
+      'Masturbators',
+      'milf',
+      'milfs',
+      'missionary position',
+      'molest',
+      'molester',
+      'mothafucka',
+      'mothafuckas',
+      'mothafuckaz',
+      'mothafucker',
+      'mothafuckers',
+      'mothafuckin',
+      'mothafucking',
+      'motherfuck',
+      'motherfucka',
+      'motherfucker',
+      'motherfuckers',
+      'motherfuckin',
+      'motherfucking',
+      'mutherfucker',
+      'naggers',
+      'Nasal and sinus cancer',
+      'nazi',
+      'necrophilia',
+      'neo - nazi',
+      'neonazi',
+      'Nigga',
+      'niggah',
+      'niggas',
+      'niggaz',
+      'nigger',
+      'niggers',
+      'niglet',
+      'negro',
+      'nudes',
+      'nudist',
+      'nudity',
+      'nutsack',
+      'Oral Sex',
+      'orgasim',
+      'orgasm',
+      'orgasmic',
+      'orgasms',
+      'paedo',
+      'paedophile',
+      'pantyhose',
+      'pedophile',
+      'pedophile',
+      'pedophilia',
+      'pedophiliac',
+      'Penile cancer',
+      'Penis',
+      'pervert',
+      'perverted',
+      'Sexually transmitted infections',
+      'skullfuck',
+      'slave',
+      'slut',
+      'smut',
+      'smutty',
+      'sperm',
+      'squirting',
+      'stockings',
+      'strip',
+      'terrorism',
+      'terrorist',
+      'terrorists',
+      'testicles',
+      'threesome',
+      'tit',
+      'tities',
+      'tits',
+      'titten',
+      'titties',
+      'titty',
+      'tri - sexual',
+      'Twat',
+      'undress',
+      'undressing',
+      'upskirt',
+      'upskirts',
+      'vagina',
+      'vaginal',
+      'Vaginal cancer',
+      'vbucks',
+      'Viagra',
+      'Vibrator',
+      'vibrators',
+      'white power',
+      'white pride',
+      'Xbox nigga',
+      'xnxx',
+      'Xtube',
+      'xvideos',]
+  })
+
+  if (swearWords.some(word => message.content.toLowerCase().includes(word))) {
+    message.delete()
+
+    message.member.send(`***YOU HAVE SOME NERVE SAYING THAT IN THIS SERVER***`)
+  }
+
   // Help Command
   command(client, ['help', 'h'], message => {
-  const embed = new Discord.MessageEmbed()
+    const embed = new Discord.MessageEmbed()
       .setTitle(`***Help Menu***`)
       .setThumbnail(client.user.displayAvatarURL())
       .setColor('#2400FF')
-      .setFooter('Developed by Tahlil') 	
+      .setFooter('Developed by Tahlil')
       .addFields(
-      {
-        name: 'Bot Prefix',
-        value: '*,*',
-      },
-      {
-        name: 'ban:',
-        value: '*Bans a user duh. <Requires ADMIN>.*',
-      },
-      {
-        name: 'kick:',
-        value: '*Kicks a user also duh. <Requires ADMIN>.*',
-      },
-      {
-        name: 'clear:',
-        value: '*Clears messages also duh. <Requires ADMIN>.*',
-      },
-      {
-        name: 'nuke:',
-        value: '*Hiroshimas the channel. <Requires ADMIN>.*',
-      },
-      {
-        name: 'meme:',
-        value: '*Sends memes.*',
-      },
-      {
-        name: 'status:',
-        value: '*Sets bot playing status.*',
-      },
-      {
-        name: 'ping:',
-        value: '*Shows the ping.*'
-      },
-      {
-        name: 'member:',
-        value: '*Shows current members in server.*'
-      } 
-    )
+        {
+          name: 'Bot Prefix',
+          value: '*,*',
+        },
+        {
+          name: 'ban:',
+          value: '*Bans a user duh. <Requires ADMIN>.*',
+        },
+        {
+          name: 'kick:',
+          value: '*Kicks a user also duh. <Requires ADMIN>.*',
+        },
+        {
+          name: 'clear:',
+          value: '*Clears messages also duh. <Requires ADMIN>.*',
+        },
+        {
+          name: 'nuke:',
+          value: '*Hiroshimas the channel. <Requires ADMIN>.*',
+        },
+        {
+          name: 'meme:',
+          value: '*Sends memes.*',
+        },
+        {
+          name: 'status:',
+          value: '*Sets bot playing status.*',
+        },
+        {
+          name: 'ping:',
+          value: '*Shows the ping.*'
+        },
+        {
+          name: 'member:',
+          value: '*Shows current members in server.*'
+        }
+      )
 
     message.channel.send(embed)
 
@@ -89,7 +306,7 @@ client.on('ready', () => {
 
   // Latency
   client.on('message', message => {
-    if (message.content === ',ping') {  
+    if (message.content === ',ping') {
       message.channel.send(`🏓Latency is **${message.createdTimestamp - message.createdTimestamp}ms** API Latency is **${Math.round(client.ws.ping)}ms**`);
     }
   });
@@ -104,7 +321,7 @@ client.on('ready', () => {
 
   // NUKE
   command(client, ['nuke'], (message) => {
-    
+
     const { member, mentions } = message
 
     const tag = `<@${member.id}>`
@@ -123,9 +340,9 @@ client.on('ready', () => {
     if (nukeStatus === true) {
       message.channel.send(`**HIROSHIMA**`)
     }
-    
+
   })
-  
+
   // Clearer
   command(client, ['clr', 'clear'], async message => {
 
@@ -135,18 +352,19 @@ client.on('ready', () => {
 
     if (message.member.hasPermission('ADMINISTRATOR')) {
 
-      const args = message.content.split(' ').slice(1); 
+      const args = message.content.split(' ').slice(1);
       const amount = args.join(' ');
 
       if (!amount) return message.reply('**You haven\'t given an amount of messages which should be deleted!**');
-      if (isNaN(amount)) return message.reply('**The amount parameter isn`t a number!**'); 
+      if (isNaN(amount)) return message.reply('**The amount parameter isn`t a number!**');
 
-      if (amount > 100) return message.reply('**You can`t delete more than 100 messages at once!**'); 
-      if (amount < 1) return message.reply('**You have to delete at least 1 message!**'); 
+      if (amount > 100) return message.reply('**You can`t delete more than 100 messages at once!**');
+      if (amount < 1) return message.reply('**You have to delete at least 1 message!**');
 
-      await message.channel.messages.fetch({ limit: amount }).then(messages => { 
-        message.channel.bulkDelete(messages 
-      )});
+      await message.channel.messages.fetch({ limit: amount }).then(messages => {
+        message.channel.bulkDelete(messages
+        )
+      });
       message.channel.send(`Cleared **${amount}** Messages`)
     } else {
       message.channel.send(`**${tag} Unfortunately enough, you don't have the balls to do that.**`)
@@ -159,8 +377,8 @@ client.on('ready', () => {
     const { member, mentions } = message
 
     const tag = `<@${member.id}>`
-    
- 
+
+
     if (message.member.hasPermission('ADMINISTRATOR')) {
       const content = message.content.replace('>status', '')
       message.channel.send(`Status changed to **${content}**`)
