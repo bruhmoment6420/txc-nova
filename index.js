@@ -406,7 +406,7 @@ client.on('ready', () => {
 
 
     if (message.member.hasPermission('ADMINISTRATOR')) {
-      const content = message.content.replace('>status', '')
+      const content = message.content.replace(',status', '')
       message.channel.send(`Status changed to **${content}**`)
 
       client.user.setPresence({
