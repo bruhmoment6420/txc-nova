@@ -254,6 +254,10 @@ client.on('ready', () => {
           value: '*Shows current members in server.*',
         },
         {
+          name: '8ball:',
+          value: '*Ask a yes or no question and bot answers.*',
+        },
+        {
           name: 'helpa:',
           value: '*Shows list of admin commands.*',
         }
@@ -275,24 +279,24 @@ client.on('ready', () => {
         .setFooter('Developed by Tahluwu')
         .addFields(
           {
-            name: 'ban',
-            value: '*Bans user, Tag person you wanna ban to init*',
+            name: 'ban:',
+            value: '*Bans user, Tag person you wanna ban to init.*',
           },
           {
-            name: 'kick',
-            value: '*Kicks user, Tag person you wanna ban to init*',
+            name: 'kick:',
+            value: '*Kicks user, Tag person you wanna ban to init.*',
           },
           {
-            name: 'clear',
-            value: '*Clears message, use with args uwu*',
+            name: 'clear:',
+            value: '*Clears message, use with args uwu.*',
           },
           {
-            name: 'nuke',
-            value: '*Hiroshimas the channel*',
+            name: 'nuke:',
+            value: '*Hiroshimas the channel.*',
           },
           {
-            name: 'status',
-            value: '*Sets the status uwu*',
+            name: 'status:',
+            value: '*Sets the status uwu.*',
           }
         )
 
@@ -301,6 +305,42 @@ client.on('ready', () => {
       message.channel.send(`***no***`)
     }
 
+  })
+
+  // 8 Ball 
+  command(client, ['8ball', 'EightBall', 'eightball'], message => {
+    const { member } = message
+
+    const tag = `<@${member.id}>`
+    const userContent = message.content.replace(',8ball', '')
+    
+    const replies = [
+      'It is certain.',
+      'It is decidedly so.',
+      'Without a doubt.',
+      'Yes – definitely.',
+      'You may rely on it.',
+      'As I see it, yes.',
+      'Most likely.',
+      'Outlook good.',
+      'Yes.',
+      'Signs point to yes.',
+      'Reply hazy, try again.',
+      'Ask again later.',
+      'Better not tell you now.',
+      'Cannot predict now.',
+      'Concentrate and ask again.',
+      'Dont count on it.',
+      'My reply is no.',
+      'My sources say no.',
+      'Outlook not so good.',
+      'Very doubtful.',
+    ]
+
+    const randomReply = replies[Math.floor(Math.random() * replies.length)];
+
+    message.channel.send(`***Question: ${userContent}\nAnswer: ${randomReply}***` )
+    
   })
 
   // Poll
