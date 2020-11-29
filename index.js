@@ -4,7 +4,6 @@ const client = new Discord.Client()
 
 const config = require('./config.json')
 const command = require('./command')
-const poll = require('./poll')
 
 // On loop
 client.on('ready', () => {
@@ -20,7 +19,7 @@ client.on('ready', () => {
       .addFields(
         {
           name: 'Version:',
-          value: '*1.20*',
+          value: '*1.22*',
         }
       )
 
