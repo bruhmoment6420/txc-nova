@@ -275,7 +275,7 @@ client.on('ready', () => {
           value: '*Ask a yes or no question and bot answers.*',
         },
         {
-          name: 'remind',
+          name: 'remind:',
           value: '*Gives a friendly remider.*',
         },
         {
@@ -412,7 +412,7 @@ client.on('ready', () => {
 
     const tag = `<@${member.id}>`
 
-    message.channel.send(`***KILL YOURSELF ${tag}***`)
+    message.channel.send(`**KILL YOURSELF ${tag}**`)
   })
 
 
