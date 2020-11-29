@@ -10,6 +10,23 @@ const poll = require('./poll')
 client.on('ready', () => {
   console.log('The client is ready!')
 
+
+  // Version 
+  command(client, ['v', 'version'], message => {
+    const versionEmbed = new Discord.MessageEmbed()
+      .setTitle(`***Version***`)
+      .setThumbnail(client.user.displayAvatarURL())
+      .setColor('#2400FF')
+      .addFields(
+        {
+          name: 'Version:',
+          value: '*1.17*',
+        }
+      )
+
+    message.channel.send(versionEmbed)
+  })
+
   // Profanity Blocker
   client.on('message', async message => {
     const { member } = message
@@ -258,6 +275,10 @@ client.on('ready', () => {
           value: '*Ask a yes or no question and bot answers.*',
         },
         {
+          name: 'remind',
+          value: '*Gives a friendly remider.*',
+        },
+        {
           name: 'helpa:',
           value: '*Shows list of admin commands.*',
         }
@@ -313,7 +334,7 @@ client.on('ready', () => {
 
     const tag = `<@${member.id}>`
     const userContent = message.content.replace(',8ball', '')
-    
+
     const replies = [
       'It is certain.',
       'It is decidedly so.',
@@ -339,8 +360,8 @@ client.on('ready', () => {
 
     const randomReply = replies[Math.floor(Math.random() * replies.length)];
 
-    message.channel.send(`***Question: ${userContent}\nAnswer: ${randomReply}***` )
-    
+    message.channel.send(`***Question: ${userContent}\nAnswer: ${randomReply}***`)
+
   })
 
   // Poll
@@ -382,6 +403,16 @@ client.on('ready', () => {
     client.guilds.cache.forEach((guild) => {
       message.channel.send(`***${guild.name}*** has a total of ***${guild.memberCount}*** members`)
     })
+  })
+
+  // Reminder
+  command(client, 'remind', (message) => {
+
+    const { member } = message
+
+    const tag = `<@${member.id}>`
+
+    message.channel.send(`***KILL YOURSELF ${tag}***`)
   })
 
 
