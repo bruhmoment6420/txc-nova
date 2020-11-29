@@ -364,8 +364,6 @@ client.on('ready', () => {
 
   })
 
-  // Poll
-  poll(client)
 
   // Meme Command
   client.on('message', message => {
