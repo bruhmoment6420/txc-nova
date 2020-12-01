@@ -19,7 +19,7 @@ client.on('ready', () => {
       .addFields(
         {
           name: 'Version:',
-          value: '*1.23*',
+          value: '*1.24*',
         }
       )
 
@@ -59,7 +59,7 @@ client.on('ready', () => {
       'neonazi',
       'nigga',
       'niga',
-      'niba',                                            
+      'niba',
       'niger',
       'nibba',
       'n1gga',
@@ -122,6 +122,10 @@ client.on('ready', () => {
           value: '*Gives a friendly remider.*',
         },
         {
+          name: 'version:',
+          value: '*Prints the value*',
+        },
+        {
           name: 'helpa:',
           value: '*Shows list of admin commands.*',
         }
@@ -157,6 +161,10 @@ client.on('ready', () => {
           {
             name: 'nuke:',
             value: '*Hiroshimas the channel.*',
+          },
+          {
+            name: 'mute:',
+            value: '*Mutes a user <requires a mute role in server>*',
           },
           {
             name: 'status:',
@@ -366,6 +374,30 @@ client.on('ready', () => {
         message.channel.send(`**${tag} Performed a slightly less lethal epic gamer move.**`)
       } else {
         message.channel.send(`**${tag} Please specify someone to kick.**`)
+      }
+    } else {
+      message.channel.send(`**${tag} Unfortunately enough, you don't have the balls to do that.**`)
+    }
+  })
+
+  // Muter
+  command(client, 'mute', message => {
+    const { member, mentions } = message
+
+    const tag = `<@${member.id}>`
+
+    const mutedRole = message.guild.roles.cache.find(
+      (role) => role.name === "Mute"
+    );
+
+    if (member.hasPermission('ADMINISTRATOR')) {
+      const target = mentions.users.first()
+      if (!mutedRole) {
+        message.channel.send(`**Role not dere :(**`)
+      } else {
+        const targetMember = message.guild.members.cache.get(target.id)
+        targetMember.roles.add(mutedRole);
+        message.channel.send(`**${tag} used Silencio**`);
       }
     } else {
       message.channel.send(`**${tag} Unfortunately enough, you don't have the balls to do that.**`)
