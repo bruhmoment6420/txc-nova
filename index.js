@@ -19,7 +19,7 @@ client.on('ready', () => {
       .addFields(
         {
           name: 'Version:',
-          value: '*1.24*',
+          value: '*1.25*',
         }
       )
 
@@ -126,6 +126,10 @@ client.on('ready', () => {
           value: '*Prints the value*',
         },
         {
+          name: 'avatar:',
+          value: '*Shows the avatar of person tagged. <If not tag shows avatar of sender>*'
+        },
+        {
           name: 'helpa:',
           value: '*Shows list of admin commands.*',
         }
@@ -217,34 +221,30 @@ client.on('ready', () => {
 
 
   // Meme Command
-  client.on('message', message => {
+  command(client, ['meme'], message => {
 
-    if (message.content === ",meme") {
-      const embed = new Discord.MessageEmbed()
-      got('https://www.reddit.com/r/memes/random/.json').then(response => {
-        let content = JSON.parse(response.body);
-        let permalink = content[0].data.children[0].data.permalink;
-        let memeUrl = `https://reddit.com${permalink}`;
-        let memeImage = content[0].data.children[0].data.url;
-        let memeTitle = content[0].data.children[0].data.title;
-        let memeUpvotes = content[0].data.children[0].data.ups;
-        let memeDownvotes = content[0].data.children[0].data.downs;
-        let memeNumComments = content[0].data.children[0].data.num_comments;
-        embed.setTitle(`${memeTitle}`)
-        embed.setURL(`${memeUrl}`)
-        embed.setImage(memeImage)
-        embed.setColor('RANDOM')
-        embed.setFooter(`👍 ${memeUpvotes} 👎 ${memeDownvotes} 💬 ${memeNumComments}`)
-        message.channel.send(embed);
-      })
-    }
+    const embed = new Discord.MessageEmbed()
+    got('https://www.reddit.com/r/memes/random/.json').then(response => {
+      let content = JSON.parse(response.body);
+      let permalink = content[0].data.children[0].data.permalink;
+      let memeUrl = `https://reddit.com${permalink}`;
+      let memeImage = content[0].data.children[0].data.url;
+      let memeTitle = content[0].data.children[0].data.title;
+      let memeUpvotes = content[0].data.children[0].data.ups;
+      let memeDownvotes = content[0].data.children[0].data.downs;
+      let memeNumComments = content[0].data.children[0].data.num_comments;
+      embed.setTitle(`${memeTitle}`)
+      embed.setURL(`${memeUrl}`)
+      embed.setImage(memeImage)
+      embed.setColor('RANDOM')
+      embed.setFooter(`👍 ${memeUpvotes} 👎 ${memeDownvotes} 💬 ${memeNumComments}`)
+      message.channel.send(embed);
+    })
   })
 
   // Latency
-  client.on('message', message => {
-    if (message.content === ',ping') {
-      message.channel.send(`🏓Latency is **${message.createdTimestamp - message.createdTimestamp}ms** API Latency is **${Math.round(client.ws.ping)}ms**`);
-    }
+  command(client, ['p', 'ping'], message => {
+    message.channel.send(`🏓Latency is **${message.createdTimestamp - message.createdTimestamp}ms** API Latency is **${Math.round(client.ws.ping)}ms**`);
   });
 
   // Members
@@ -289,6 +289,28 @@ client.on('ready', () => {
 
   })
 
+  // Avatar
+  command(client, ['av', 'avatar'], message => {
+
+    const { member, mentions } = message
+
+    const avTarget = mentions.users.first()
+
+    if (avTarget) {
+      const avEmbed = new Discord.MessageEmbed()
+        .setImage(avTarget.displayAvatarURL())
+
+      message.channel.send(avEmbed)
+
+    } else {
+      const avEmbed = new Discord.MessageEmbed()
+        .setImage(message.author.displayAvatarURL())
+
+      message.channel.send(avEmbed)
+    }
+
+  })
+
   // Clearer
   command(client, ['clr', 'clear'], async message => {
 
@@ -311,7 +333,7 @@ client.on('ready', () => {
         message.channel.bulkDelete(messages
         )
       });
-      message.channel.send(`Cleared **${amount}** Messages`)
+      message.channel.send(`${tag} Cleared **${amount}** Messages`)
     } else {
       message.channel.send(`**${tag} Unfortunately enough, you don't have the balls to do that.**`)
     }
