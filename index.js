@@ -19,7 +19,7 @@ client.on('ready', () => {
       .addFields(
         {
           name: 'Version:',
-          value: '*1.25*',
+          value: '*1.26*',
         }
       )
 
@@ -127,7 +127,7 @@ client.on('ready', () => {
         },
         {
           name: 'avatar:',
-          value: '*Shows the avatar of person tagged. <If not tag shows avatar of sender>*'
+          value: '*Shows the avatar of person tagged. <use alone for own>*',
         },
         {
           name: 'helpa:',
