@@ -465,12 +465,17 @@ client.on('ready', () => {
         .addField(`**XP**`, userInfo.xp + `/100`);
       if (!member) return message.channel.send(embed)
       let memberInfo = db[member.id]
-      let embed2 = new Discord.MessageEmbed()
-        .setThumbnail(bruhMoment.displayAvatarURL())
-        .setColor(0x4286f4)
-        .addField(`**Level**`, memberInfo.level)
-        .addField(`**XP**`, memberInfo.xp + `/100`)
-      message.channel.send(embed2)
+
+      if ( memberInfo !== NaN ) {
+        let embed2 = new Discord.MessageEmbed()
+          .setThumbnail(bruhMoment.displayAvatarURL())
+          .setColor(0x4286f4)
+          .addField(`**Level**`, memberInfo.level)
+          .addField(`**XP**`, memberInfo.xp + `/100`)
+        message.channel.send(embed2)
+      } else {
+        message.channel.send('aah ?')
+      }
     }
     fs.writeFile('./database.json', JSON.stringify(db), (x) => {
       if (x) console.error(x)
