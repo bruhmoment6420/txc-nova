@@ -434,6 +434,9 @@ client.on('ready', () => {
 
   // EXP System
   client.on('message', message => {
+    
+    const bruhMoment = mentions.users.first()
+
 
     if (message.author.bot) return;
 
@@ -461,7 +464,7 @@ client.on('ready', () => {
       if (!member) return message.channel.send(embed)
       let memberInfo = db[member.id]
       let embed2 = new Discord.MessageEmbed()
-        .setThumbnail(member.displayAvatarURL())
+        .setThumbnail(bruhMoment.displayAvatarURL())
         .setColor(0x4286f4)
         .addField(`**Level**`, memberInfo.level)
         .addField(`**XP**`, memberInfo.xp + `/100`)
