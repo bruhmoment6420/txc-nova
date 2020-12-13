@@ -434,7 +434,9 @@ client.on('ready', () => {
 
   // EXP System
   client.on('message', message => {
-    
+
+    const { member, mentions } = message
+
     const bruhMoment = mentions.users.first()
 
 
