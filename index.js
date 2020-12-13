@@ -4,6 +4,8 @@ const client = new Discord.Client()
 
 const config = require('./config.json')
 const command = require('./command')
+const fs = require("fs")
+let db = JSON.parse(fs.readFileSync("./database.json", "utf8"))
 
 // On loop
 client.on('ready', () => {
@@ -19,7 +21,7 @@ client.on('ready', () => {
       .addFields(
         {
           name: 'Version:',
-          value: '*1.28*',
+          value: '*2.0*',
         }
       )
 
@@ -123,11 +125,15 @@ client.on('ready', () => {
         },
         {
           name: 'version:',
-          value: '*Prints the value*',
+          value: '*Prints the version.*',
         },
         {
           name: 'avatar:',
           value: '*Shows the avatar of person tagged. <use alone for own>*',
+        },
+        {
+          name: 'info:',
+          value: '*Shows the current level and exp of the user.*'
         },
         {
           name: 'helpa:',
@@ -424,6 +430,46 @@ client.on('ready', () => {
     } else {
       message.channel.send(`**${tag} Unfortunately enough, you don't have the balls to do that.**`)
     }
+  })
+
+  // EXP System
+  client.on('message', message => {
+
+    if (message.author.bot) return;
+
+    if (!db[message.author.id]) db[message.author.id] = {
+      xp: 0,
+      level: 0
+    };
+    db[message.author.id].xp++;
+    let userInfo = db[message.author.id];
+    if (userInfo.xp > 100) {
+      userInfo.level++
+      userInfo.xp = 0
+      message.reply(`****Congratulations you have leveled up**** `)
+    }
+    const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+    const cmd = args.shift().toLowerCase();
+    if (cmd === 'info') {
+      let userInfo = db[message.author.id];
+      let member = message.mentions.members.first();
+      let embed = new Discord.MessageEmbed()
+        .setThumbnail(message.author.displayAvatarURL())
+        .setColor(0x4286f4)
+        .addField(`**Level**`, userInfo.level)
+        .addField(`**XP**`, userInfo.xp + `/100`);
+      if (!member) return message.channel.send(embed)
+      let memberInfo = db[member.id]
+      let embed2 = new Discord.MessageEmbed()
+        .setThumbnail(message.author.displayAvatarURL())
+        .setColor(0x4286f4)
+        .addField(`**Level**`, memberInfo.level)
+        .addField(`**XP**`, memberInfo.xp + `/100`)
+      message.channel.send(embed2)
+    }
+    fs.writeFile('./database.json', JSON.stringify(db), (x) => {
+      if (x) console.error(x)
+    });
   })
 
 })
