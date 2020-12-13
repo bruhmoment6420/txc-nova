@@ -461,7 +461,7 @@ client.on('ready', () => {
       if (!member) return message.channel.send(embed)
       let memberInfo = db[member.id]
       let embed2 = new Discord.MessageEmbed()
-        .setThumbnail(message.author.displayAvatarURL())
+        .setThumbnail(member.displayAvatarURL())
         .setColor(0x4286f4)
         .addField(`**Level**`, memberInfo.level)
         .addField(`**XP**`, memberInfo.xp + `/100`)
