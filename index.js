@@ -21,7 +21,7 @@ client.on('ready', () => {
       .addFields(
         {
           name: 'Version:',
-          value: '*2.0*',
+          value: '*2.1*',
         }
       )
 
@@ -464,18 +464,22 @@ client.on('ready', () => {
         .addField(`**Level**`, userInfo.level)
         .addField(`**XP**`, userInfo.xp + `/100`);
       if (!member) return message.channel.send(embed)
-      
-      /*let memberInfo = db[member.id]
-      let embed2 = new Discord.MessageEmbed()
-        .setThumbnail(bruhMoment.displayAvatarURL())
-        .setColor(0x4286f4)
-        .addField(`**Level**`, memberInfo.level)
-        .addField(`**XP**`, memberInfo.xp + `/100`)
-      message.channel.send(embed2)
-      */
+
+      let memberInfo = db[member.id]
+
+      if (typeof memberInfo === 'undefined') {
+        message.channel.send(`***Theres nothing to show O-O***`)
+      } else {
+        let embed2 = new Discord.MessageEmbed()
+          .setThumbnail(bruhMoment.displayAvatarURL())
+          .setColor(0x4286f4)
+          .addField(`**Level**`, memberInfo.level)
+          .addField(`**XP**`, memberInfo.xp + `/100`)
+        message.channel.send(embed2)
+      }
 
     }
-    
+
     fs.writeFile('./database.json', JSON.stringify(db), (x) => {
       if (x) console.error(x)
     });
