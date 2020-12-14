@@ -16,13 +16,21 @@ The following section describes how to set the bot up manually.
 ### Running
 Ill be using ```npm``` for the packages but ```yarn``` can also be used.
 
+### Prerequisites
+This following guide assumes you have programming and discord bot development knowledge.
+If not please use the commercial verision.
+Make a discord bot from the [Discord Developer Portal](https://discord.com/developers/applications "UwU").
+Then get the token for the bot and
+clone the repository onto your computer.
+
+### Starting the bot
 #### Step 1
 In project directory run:
 ```
 npm install
 ```
 #### Step 2
-Go to ```config.json``` and change the ```token```.
+Go to ```config.json``` and change the ```token``` to your own bots one.
 If you want to change the prefix go ahead and change the ```prefix``` value.
 #### Step 3
 Once everything is ready to go run:
