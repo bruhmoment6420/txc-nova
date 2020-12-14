@@ -19,11 +19,12 @@ Ill be using ```npm``` for the packages but ```yarn``` can also be used.
 ### Prerequisites
 This following guide assumes you have programming and discord bot development knowledge.
 If not please use the commercial verision.
-Make a discord bot from the [Discord Developer Portal](https://discord.com/developers/applications "UwU").
-Then get the token for the bot and
-clone the repository onto your computer.
 
 ### Starting the bot
+This describes how to start the bot.
+#### Step 0
+Firstly make a discord bot from the [Discord Developer Portal](https://discord.com/developers/applications "UwU").
+Then get the token for the bot and clone the repository onto your computer.
 #### Step 1
 In project directory run:
 ```
