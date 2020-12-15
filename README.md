@@ -1,3 +1,4 @@
+![TXC_DIMDIM](https://cdn.discordapp.com/avatars/780651711030493226/961aac2b97631bbafb07f8ca4c855d04.webp)
 # txc-nova
 This is a Discord bot was originally made solely for the TXC-CNFSD Discord server but now it is available for commercial use.
 This is primarily a moderation bot but it also has various miscellaneous functions.
