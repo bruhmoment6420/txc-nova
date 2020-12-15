@@ -80,6 +80,7 @@ client.on('ready', () => {
       'slut',
       'tri - sexual',
       'twat',
+      'hizra',
       'xbox nigga'
     ]
 
@@ -267,7 +268,24 @@ client.on('ready', () => {
 
     const tag = `<@${member.id}>`
 
-    message.channel.send(`**KILL YOURSELF ${tag}**`)
+    const neckRopeReplies = [
+      `**KILL YOURSELF ${tag}**`,
+      `**JUMP OFF A ROOF ${tag}**`,
+      `**NOBODY WANTS YOU ${tag}**`,
+      `**THATS WHY SHE LEFT YOU ${tag}**`,
+      `**WHY DONT YOU GO HANG YOURSELF ${tag}**`,
+      `**HANG YOURSELF ${tag}**`,
+      `**COMMIT SELF HARM ${tag}**`,
+      `**YOUR FRIENDS DONT GIVE A SHIT ABOUT YOU ${tag}**`,
+      `**WHY WERE YOU EVEN BORN ${tag}**`,
+      `**YOU DONT MATTER ${tag}**`,
+      `**THE WORLD DOSENT NEED YOU ${tag}**`
+    ]
+
+    const randNeckRopeReplies = neckRopeReplies[Math.floor(Math.random() * neckRopeReplies.length)];
+
+    message.channel.send(`${randNeckRopeReplies}`)
+
   })
 
 
