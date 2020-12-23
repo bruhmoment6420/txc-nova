@@ -23,7 +23,7 @@ client.on('ready', () => {
       .addFields(
         {
           name: 'Version:',
-          value: '*2.5*',
+          value: '*2.6*',
         }
       )
 
@@ -136,7 +136,11 @@ client.on('ready', () => {
         },
         {
           name: 'info:',
-          value: '*Shows the current level and exp of the user.*'
+          value: '*Shows the current level and exp of the user.*',
+        },
+        {
+          name: 'dm:',
+          value: '*Dms a user duh. Usage: ,dm @reciever yourMessage*',
         },
         {
           name: 'helpa:',
