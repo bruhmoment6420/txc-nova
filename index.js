@@ -7,6 +7,8 @@ const command = require('./command')
 const fs = require("fs")
 let db = JSON.parse(fs.readFileSync("./database.json", "utf8"))
 
+const ownerId = '453146976008011777'
+
 // On loop
 client.on('ready', () => {
   console.log('The client is ready!')
@@ -21,7 +23,7 @@ client.on('ready', () => {
       .addFields(
         {
           name: 'Version:',
-          value: '*2.4*',
+          value: '*2.5*',
         }
       )
 
@@ -150,7 +152,7 @@ client.on('ready', () => {
   // Admin Help
   command(client, ['adminh', 'helpa', 'adminhelp'], message => {
 
-    if (message.member.hasPermission('ADMINISTRATOR')) {
+    if (message.member.hasPermission('ADMINISTRATOR') || message.member.id == ownerId) {
       const newEmbed = new Discord.MessageEmbed()
         .setTitle(`***SUPER SECRET HELP MENU***`)
         .setThumbnail(client.user.displayAvatarURL())
@@ -297,7 +299,7 @@ client.on('ready', () => {
 
     let nukeStatus = false
 
-    if (message.member.hasPermission('ADMINISTRATOR')) {
+    if (message.member.hasPermission('ADMINISTRATOR') || message.member.id == ownerId) {
       nukeStatus = true
       message.channel.messages.fetch().then((results) => {
         message.channel.bulkDelete(results)
@@ -341,7 +343,7 @@ client.on('ready', () => {
 
     const tag = `<@${member.id}>`
 
-    if (message.member.hasPermission('ADMINISTRATOR')) {
+    if (message.member.hasPermission('ADMINISTRATOR') || message.member.id == ownerId) {
 
       const args = message.content.split(' ').slice(1);
       const amount = args.join(' ');
@@ -370,7 +372,7 @@ client.on('ready', () => {
     const tag = `<@${member.id}>`
 
 
-    if (message.member.hasPermission('ADMINISTRATOR')) {
+    if (message.member.hasPermission('ADMINISTRATOR') || message.member.id == ownerId) {
       const content = message.content.replace(',status', '')
       message.channel.send(`Status changed to **${content}**`)
 
@@ -391,7 +393,7 @@ client.on('ready', () => {
 
     const tag = `<@${member.id}>`
 
-    if (member.hasPermission('ADMINISTRATOR')) {
+    if (member.hasPermission('ADMINISTRATOR') || message.member.id == ownerId) {
       const target = mentions.users.first()
       if (target) {
         const targetMember = message.guild.members.cache.get(target.id)
@@ -411,7 +413,7 @@ client.on('ready', () => {
 
     const tag = `<@${member.id}>`
 
-    if (member.hasPermission('ADMINISTRATOR')) {
+    if (member.hasPermission('ADMINISTRATOR') || message.member.id == ownerId) {
       const target = mentions.users.first()
       if (target) {
         const targetMember = message.guild.members.cache.get(target.id)
@@ -425,6 +427,25 @@ client.on('ready', () => {
     }
   })
 
+  // Dm Sender
+  command(client, ['dm'], message => {
+
+    const { member } = message
+
+    const tag = `<@${member.id}>`
+
+    mentionDm = message.mentions.users.first();
+    message.channel.bulkDelete(1);
+
+    if (mentionDm == null) return message.channel.send(`****${tag} Please specify a reciever****`);
+
+    mentionMessage = message.content.slice(3);
+    mentionDm.send(`***From:***${mentionMessage}`);
+
+    message.channel.send(`****${tag} Message sent to ${mentionDm}****`)
+
+  })
+
   // Muter
   command(client, 'mute', message => {
     const { member, mentions } = message
@@ -435,7 +456,7 @@ client.on('ready', () => {
       (role) => role.name === "Mute"
     );
 
-    if (member.hasPermission('ADMINISTRATOR')) {
+    if (member.hasPermission('ADMINISTRATOR') || message.member.id == ownerId) {
       const target = mentions.users.first()
       if (!mutedRole) {
         message.channel.send(`**Role not dere :(**`)
