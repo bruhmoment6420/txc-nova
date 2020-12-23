@@ -23,7 +23,7 @@ client.on('ready', () => {
       .addFields(
         {
           name: 'Version:',
-          value: '*2.6*',
+          value: '*2.7*',
         }
       )
 
@@ -161,7 +161,7 @@ client.on('ready', () => {
         .setTitle(`***SUPER SECRET HELP MENU***`)
         .setThumbnail(client.user.displayAvatarURL())
         .setColor('#39940D')
-        .setFooter('Developed by Tahluwu')
+        .setFooter('Developed by Tahlil')
         .addFields(
           {
             name: 'ban:',
@@ -173,7 +173,7 @@ client.on('ready', () => {
           },
           {
             name: 'clear:',
-            value: '*Clears message, use with args uwu.*',
+            value: '*Clears message, use with args.*',
           },
           {
             name: 'nuke:',
@@ -185,7 +185,7 @@ client.on('ready', () => {
           },
           {
             name: 'status:',
-            value: '*Sets the status uwu.*',
+            value: '*Sets the status duh.*',
           }
         )
 
@@ -284,7 +284,9 @@ client.on('ready', () => {
       `**YOUR FRIENDS DONT GIVE A SHIT ABOUT YOU ${tag}**`,
       `**WHY WERE YOU EVEN BORN ${tag}**`,
       `**YOU DONT MATTER ${tag}**`,
-      `**THE WORLD DOSENT NEED YOU ${tag}**`
+      `**THE WORLD DOSENT NEED YOU ${tag}**`,
+      `**PERFORM NECK ROPE ${tag}**`,
+      `**YOU ARE USELESS ${tag}**`
     ]
 
     const randNeckRopeReplies = neckRopeReplies[Math.floor(Math.random() * neckRopeReplies.length)];
