@@ -446,7 +446,7 @@ client.on('ready', () => {
     if (mentionDm == null) return message.channel.send(`****${tag} Please specify a reciever****`);
 
     mentionMessage = message.content.slice(3);
-    mentionDm.send(`***From:***${mentionMessage}`);
+    mentionDm.send(`${mentionMessage}`);
 
     message.channel.send(`****${tag} Message sent to ${mentionDm}****`)
 
