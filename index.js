@@ -24,7 +24,7 @@ client.on('ready', () => {
       .addFields(
         {
           name: 'Version:',
-          value: '*2.7*',
+          value: '*2.8*',
         }
       )
 
