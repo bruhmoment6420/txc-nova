@@ -23,7 +23,7 @@ client.on('ready', () => {
       .addFields(
         {
           name: 'Version:',
-          value: '*2.8*',
+          value: '*2.9*',
         }
       )
 
@@ -129,10 +129,6 @@ client.on('ready', () => {
         {
           name: '8ball:',
           value: '*Ask a yes or no question and bot answers.*',
-        },
-        {
-          name: 'remind:',
-          value: '*Gives a friendly remider.*',
         },
         {
           name: 'version:',
@@ -273,36 +269,6 @@ client.on('ready', () => {
       message.channel.send(`***${guild.name}*** has a total of ***${guild.memberCount}*** members`)
     })
   })
-
-  // Reminder
-  command(client, 'remind', (message) => {
-
-    const { member } = message
-
-    const tag = `<@${member.id}>`
-
-    const neckRopeReplies = [
-      `**KILL YOURSELF ${tag}**`,
-      `**JUMP OFF A ROOF ${tag}**`,
-      `**NOBODY WANTS YOU ${tag}**`,
-      `**THATS WHY SHE LEFT YOU ${tag}**`,
-      `**WHY DONT YOU GO HANG YOURSELF ${tag}**`,
-      `**HANG YOURSELF ${tag}**`,
-      `**COMMIT SELF HARM ${tag}**`,
-      `**YOUR FRIENDS DONT GIVE A SHIT ABOUT YOU ${tag}**`,
-      `**WHY WERE YOU EVEN BORN ${tag}**`,
-      `**YOU DONT MATTER ${tag}**`,
-      `**THE WORLD DOSENT NEED YOU ${tag}**`,
-      `**PERFORM NECK ROPE ${tag}**`,
-      `**YOU ARE USELESS ${tag}**`
-    ]
-
-    const randNeckRopeReplies = neckRopeReplies[Math.floor(Math.random() * neckRopeReplies.length)];
-
-    message.channel.send(`${randNeckRopeReplies}`)
-
-  })
-
 
   // NUKE
   command(client, ['nuke'], (message) => {
