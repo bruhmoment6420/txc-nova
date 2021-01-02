@@ -94,6 +94,14 @@ client.on('ready', () => {
     }
   })
 
+  // Detroit Time
+  client.on('message', async message => {
+    const { member } = message
+    const replies = ['detroit become human']
+    if (replies.some(word => message.content.toLowerCase().includes(word))) {message.channel.send(`****YES >:)****`) }
+
+  })
+
 
   // Help Command
   command(client, ['help', 'h'], message => {
