@@ -1,4 +1,3 @@
-// Quouta Depleted
 const Discord = require('discord.js')
 const got = require('got')
 const client = new Discord.Client()
