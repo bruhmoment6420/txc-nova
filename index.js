@@ -32,7 +32,12 @@ client.on('ready', () => {
   
   // Logger (This does nothing this is just for fun)
   command(client, ['log'], message => {
-    message.channel.send(`****LOG COMPLETE****`)
+    if (message.member.id == ownerId) {
+      message.channel.send(`****LOG COMPLETE****`)
+    } else {
+      message.channel.send(`****SORRY ONLY THE DEVELOPER CAN DO THAT****`)  
+    }
+   
   })
 
   // Profanity Blocker
