@@ -29,6 +29,11 @@ client.on('ready', () => {
 
     message.channel.send(versionEmbed)
   })
+  
+  // Logger (This does nothing this is just for fun)
+  command(client, ['log'], message => {
+    message.channel.send(`****LOG COMPLETE****`)
+  })
 
   // Profanity Blocker
   client.on('message', async message => {
