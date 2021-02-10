@@ -54,7 +54,6 @@ client.on('ready', () => {
       'faggs',
       'faghag',
       'naggers',
-      'niga',
       'niba',
       'niger',
       'nibba',
