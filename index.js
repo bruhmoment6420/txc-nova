@@ -9,6 +9,8 @@ let db = JSON.parse(fs.readFileSync("./database.json", "utf8"))
 
 const ownerId = '453146976008011777'
 
+// Error
+
 // On loop
 client.on('ready', () => {
   console.log('The client is ready!')
