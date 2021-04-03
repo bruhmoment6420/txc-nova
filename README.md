@@ -10,7 +10,7 @@ It uses the Discord.JS library or wrapper.
 
 
 ## Adding the commercial version to your server
-[Add Me](https://discord.com/api/oauth2/authorize?client_id=780651711030493226&permissions=8&scope=bot "Click me !!") 
+[Add Me](https://discord.com/api/oauth2/authorize?client_id=780651711030493226&permissions=8&scope=bot "Click me !!") ) (dosent work)
 Use that link to add the commercial version of the bot that works out of the box to your server.
 
 
